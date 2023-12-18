@@ -31,7 +31,7 @@ const Filters = () => {
             <select
               value={selectedType}
               onChange={(e) => dispatch(setSelectedType(e.target.value))}
-              className="rounded-lg p-1 outline-none text-center "
+              className="rounded-lg p-1 outline-none text-center"
             >
               {typeRanges.map((type) => (
                 <option key={type} value={type}>

@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { MdOutlinePets as Logo } from "react-icons/md";
 import { FaGoogle } from "react-icons/fa";
-// import { set } from "../features/favorites";
 import { NavLink, useNavigate } from "react-router-dom";
-// import Loader from "../components/Loader";
 import { signInWithPassword, signInWithGoogle } from "../config/supabaseClient";
 
 const Login = () => {
@@ -71,7 +69,7 @@ const Login = () => {
         </button>
         <div className="mb-2 flex justify-center items-center">
           <div className="flex flex-1 bg-neutral-300 h-[2px]" />
-          <span className="mx-2 text-neutral-400">OR</span>
+          <span className="mx-2 text-sm text-neutral-400">OR</span>
           <div className="flex flex-1 bg-neutral-300 h-[2px]" />
         </div>
         <button
@@ -81,7 +79,7 @@ const Login = () => {
           <FaGoogle />
           Sign In With Google
         </button>
-        <div className="mt-5 flex justify-center items-center gap-1 text-neutral-500">
+        <div className="mt-5 text-sm flex justify-center items-center gap-1 text-neutral-500">
           Dont have an account?
           <NavLink to="/signup" className="text-neutral-700 text-center underline underline-offset-1">
             Sign up

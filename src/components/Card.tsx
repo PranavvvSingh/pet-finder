@@ -45,7 +45,7 @@ const Card = ({ image, name, price, id }: partialPetsType) => {
       />
       <div className="p-2 text-center">
         <h3
-          className="mb-2 block text-xl font-semibold text-black"
+          className="mb-2 block text-xl font-semibold text-neutral-800"
           onClick={() => {
             navigate("pet/" + id);
           }}

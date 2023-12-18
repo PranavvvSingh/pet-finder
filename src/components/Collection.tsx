@@ -10,6 +10,7 @@ import Filters from "./Filters";
 
 const Collection = () => {
   const dispatch = useDispatch();
+
   const { pets, searchText, selectedType, selectedPrice, selectedSort } =
     useSelector((state: RootState) => state.filter);
 
