@@ -28,6 +28,7 @@ function App() {
 
     const { data } = supabase.auth.onAuthStateChange(async (event, session) => {
       // console.log(event);
+      console.log(session?.user)
       if (event == "SIGNED_IN" && !current_session) {
         dispatch(login(session!));
       }

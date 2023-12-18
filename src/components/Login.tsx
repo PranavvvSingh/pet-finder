@@ -37,18 +37,16 @@ const Login = () => {
   // if (isPending) return <Loader />;
   // else
   return (
-    <div className="flex justify-center items-center mt-[50px]">
+    <div className="flex justify-center items-center mt-[40px]">
       <form
         action=""
-        className="w-[350px] mx-auto flex flex-col  justify-center p-5 border-2 border-amber-500 rounded-xl"
+        className="w-[350px] mx-auto flex flex-col  justify-center p-5 border-2 border-amber-500 rounded-xl "
       >
         <h1 className="heading text-center text-3xl flex justify-center items-center mb-5">
           <Logo className="mr-1" />
           PetFinder
         </h1>
-        <NavLink to="/signup" className="text-neutral-500 text-center mb-5">
-          Not a member? Click here
-        </NavLink>
+        <p className="text-center mb-2 text-neutral-600">Login with email</p>
         <input
           type="text"
           size={1}
@@ -66,19 +64,29 @@ const Login = () => {
           className="mb-5 rounded-lg p-2 bg-transparent border border-amber-500 outline-none"
         />
         <button
-          className="mb-5 bg-amber-500 p-2 rounded-xl"
+          className="mb-2 bg-amber-500 p-2 rounded-full"
           onClick={(e) => logIn(e)}
         >
           Log In
         </button>
-        <hr className="bg-neutral-200 h-[2px]   mb-5" />
+        <div className="mb-2 flex justify-center items-center">
+          <div className="flex flex-1 bg-neutral-300 h-[2px]" />
+          <span className="mx-2 text-neutral-400">OR</span>
+          <div className="flex flex-1 bg-neutral-300 h-[2px]" />
+        </div>
         <button
-          className="bg-amber-500 p-2 rounded-xl flex items-center justify-center gap-2"
+          className="bg-amber-500 p-2 rounded-full flex items-center justify-center gap-2"
           onClick={(e) => googleSignIn(e)}
         >
           <FaGoogle />
           Sign In With Google
         </button>
+        <div className="mt-5 flex justify-center items-center gap-1 text-neutral-500">
+          Dont have an account?
+          <NavLink to="/signup" className="text-neutral-700 text-center underline underline-offset-1">
+            Sign up
+          </NavLink>
+        </div>
       </form>
     </div>
   );

@@ -27,7 +27,7 @@ const Header = () => {
   }
 
   return (
-    <div className="sticky top-0 z-10 flex flex-row justify-between px-2 md:px-8 py-4 bg-yellow-500">
+    <div className="h-[60px] sticky top-0 z-10 flex flex-row justify-between px-2 md:px-8 py-1 bg-yellow-500">
       <NavLink
         to="/"
         className="text-xl md:text-2xl flex gap-1 items-center heading"

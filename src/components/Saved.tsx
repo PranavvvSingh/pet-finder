@@ -8,8 +8,8 @@ const Saved = () => {
   const name = session?.user.user_metadata.name;
   return (
     <>
-      <p className="text-center text-neutral-500 mt-10">
-        Welcome {name}. Showing {favorites.length} Results
+      <p className="text-center text-lg text-neutral-500 mt-10">
+        {name.split(" ")[0]}, you've marked {favorites.length} pets as favorites.
       </p>
       <div className="flex flex-wrap p-7 gap-8 justify-center">
         {favorites?.map((pet) => {
