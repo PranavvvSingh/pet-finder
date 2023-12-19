@@ -7,13 +7,15 @@ import { add, remove } from "../features/favorites";
 import { RootState } from "../app/store";
 import { partialPetsType } from "../types/types";
 import { addToStore, removeFromStore } from "../config/supabaseClient";
+import { useToast } from "@/components/ui/use-toast";
 
 const Card = ({ image, name, price, id }: partialPetsType) => {
   const favorites = useSelector(
     (state: RootState) => state.favorites.collection
   );
   const session = useSelector((state: RootState) => state.auth.user);
-  const email=session?.user.email
+  const email = session?.user.email;
+  const { toast } = useToast();
 
   const favoriteStatus = favorites.some((item) => item.id === id);
   const navigate = useNavigate();
@@ -23,13 +25,22 @@ const Card = ({ image, name, price, id }: partialPetsType) => {
     if (!email) {
       console.log("not logged in");
       navigate("/login");
+      toast({
+        description: `⚠️ You're not logged in`,
+      });
     } else {
       if (favoriteStatus) {
-        removeFromStore(id,email);
+        removeFromStore(id, email);
         dispatch(remove(id));
+        toast({
+          description: `✅ Removed from Favorites`,
+        });
       } else {
-        addToStore(id,email);
+        addToStore(id, email);
         dispatch(add({ id, name, price, image }));
+        toast({
+          description: `✅ Added to Favorites`,
+        });
       }
     }
   }

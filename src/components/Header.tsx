@@ -48,7 +48,7 @@ const Header = () => {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            "px-2 py-1 rounded-lg hover:ring-black text-base md:text-lg" +
+            "px-2 py-1 rounded-lg hover:ring-black text-sm md:text-base subheading" +
             (isActive ? " bg-black/[0.2] " : "")
           }
         >
@@ -57,7 +57,7 @@ const Header = () => {
         <NavLink
           to="/saved"
           className={({ isActive }) =>
-            "px-2 py-1 rounded-lg hover:ring-black text-base md:text-lg" +
+            "px-2 py-1 rounded-lg hover:ring-black text-sm md:text-base subheading" +
             (isActive ? " bg-black/[0.2] " : "")
           }
         >
@@ -66,7 +66,7 @@ const Header = () => {
         {userId ? (
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <p className="cursor-pointer px-2 py-1 rounded-lg text-base md:text-lg">
+              <p className="cursor-pointer px-2 py-1 rounded-lg text-sm md:text-base subheading">
                 Logout
               </p>
             </AlertDialogTrigger>
@@ -94,7 +94,7 @@ const Header = () => {
           <NavLink
             to="/login"
             className={({ isActive }) =>
-              "px-2 py-1 rounded-lg  hover:ring-black text-base md:text-lg" +
+              "px-2 py-1 rounded-lg  hover:ring-black text-sm md:text-base subheading" +
               (isActive ? " bg-black/[0.2] " : "")
             }
           >

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Card from "./Card";
 import Search from "./Search";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,9 +7,11 @@ import supabase, { fetchFavorites } from "../config/supabaseClient";
 import { set } from "../features/favorites";
 import { setPets } from "../features/filters";
 import Filters from "./Filters";
+import Loader from "./Loader";
 
 const Collection = () => {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
 
   const { pets, searchText, selectedType, selectedPrice, selectedSort } =
     useSelector((state: RootState) => state.filter);
@@ -30,6 +32,7 @@ const Collection = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       let query = supabase.from("pets").select("*");
       if (selectedType !== "All") query = query.eq("type", selectedType);
       if (selectedPrice !== "All") {
@@ -52,29 +55,34 @@ const Collection = () => {
       const { data, error } = await query;
       if (data) dispatch(setPets(data));
       if (error) console.log("ERROR");
+      setLoading(false);
     };
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedPrice, selectedSort, selectedType, searchText]);
 
   return (
-    <>
+    <div className="h-full">
       <Search />
       <Filters />
-      <div className="flex flex-wrap p-7 gap-8 justify-center">
-        {pets.map((pet) => {
-          return (
-            <Card
-              key={crypto.randomUUID()}
-              id={pet.id}
-              name={pet.name}
-              price={pet.price}
-              image={pet.image}
-            />
-          );
-        })}
-      </div>
-    </>
+      {loading ? (
+        <Loader className="mt-[100px]"/>
+      ) : (
+        <div className="flex flex-wrap p-7 gap-8 justify-center">
+          {pets.map((pet) => {
+            return (
+              <Card
+                key={crypto.randomUUID()}
+                id={pet.id}
+                name={pet.name}
+                price={pet.price}
+                image={pet.image}
+              />
+            );
+          })}
+        </div>
+      )}
+    </div>
   );
 };
 

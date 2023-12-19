@@ -7,13 +7,17 @@ import type { RootState } from "../app/store";
 import supabase from "../config/supabaseClient";
 import { addToStore, removeFromStore } from "../config/supabaseClient";
 import { add, remove } from "../features/favorites";
+import Loader from "../components/Loader";
+import { useToast } from "@/components/ui/use-toast";
 
 const Pet = () => {
   const [pet, setPet] = useState<petType>({} as petType);
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const { petId } = useParams<{ petId?: string }>();
   const numericPetId = petId ? parseInt(petId, 10) : undefined;
   const session = useSelector((state: RootState) => state.auth.user);
+  const { toast } = useToast();
 
   useEffect(() => {
     async function fetchPets() {
@@ -25,6 +29,7 @@ const Pet = () => {
         setPet(data[0]);
       }
       if (error) console.log("ERROR");
+      setLoading(false);
     }
     fetchPets();
   }, [numericPetId]);
@@ -37,44 +42,56 @@ const Pet = () => {
       if (favoriteStatus) {
         removeFromStore(pet.id, session?.user.email);
         dispatch(remove(pet.id));
+        toast({
+          description: `✅ Removed from Favorites`,
+        });
       } else {
         addToStore(pet.id, session?.user.email);
-        console.log(pet);
         dispatch(add(pet));
+        toast({
+          description: `✅ Added to Favorites`,
+        });
       }
     }
   }
-  return (
-    <div className="flex flex-row flex-wrap justify-center items-center mt-[50px] p-5 gap-5">
-      <img
-        src={pet?.image}
-        alt=""
-        className="w-[400px] h-[250px] md:w-[550px] md:h-[350px] rounded-lg"
-      />
-      <div className="flex  flex-col  p-2 h-max gap-5 w-[550px]">
-        <h1 className="text-4xl md:text-6xl">{pet?.name}</h1>
-        <h5 className="text-neutral-500 text-base md:text-xl">
-          {pet?.subtype}
-        </h5>
-        <div className="text-xl md:text-3xl">
-          <RupeeSign className="inline-block" />
-          {pet?.price}
-        </div>
-        <p className="md:text-lg">{pet?.description}</p>
-        <div className="grid grid-cols-2 gap-2">
-          <button
-            className="bg-amber-400 rounded-xl p-1 md:p-3"
-            onClick={ToggleFavorite}
-          >
-            {favoriteStatus ? "Remove from Favorites" : "Add To Favorites"}
-          </button>
-          <button className="bg-amber-400 rounded-xl p-1 md:p-3">
-            Inquire
-          </button>
+  if (loading)
+    return (
+      <div>
+        <Loader className="h-[calc(100vh-60px)]" />
+      </div>
+    );
+  else
+    return (
+      <div className="flex flex-row flex-wrap justify-center items-center mt-[50px] p-5 gap-5">
+        <img
+          src={pet?.image}
+          alt=""
+          className="w-[400px] h-[250px] md:w-[550px] md:h-[350px] rounded-lg"
+        />
+        <div className="flex  flex-col  p-2 h-max gap-5 w-[550px]">
+          <h1 className="text-4xl md:text-6xl">{pet?.name}</h1>
+          <h5 className="text-neutral-500 text-base md:text-xl">
+            {pet?.subtype}
+          </h5>
+          <div className="text-xl md:text-3xl">
+            <RupeeSign className="inline-block" />
+            {pet?.price}
+          </div>
+          <p className="md:text-lg">{pet?.description}</p>
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              className="bg-amber-400 rounded-xl p-1 md:p-3"
+              onClick={ToggleFavorite}
+            >
+              {favoriteStatus ? "Remove from Favorites" : "Add To Favorites"}
+            </button>
+            <button className="bg-amber-400 rounded-xl p-1 md:p-3">
+              Inquire
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
 };
 
 export default Pet;
