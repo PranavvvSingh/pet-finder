@@ -6,34 +6,32 @@ import { signInWithPassword, signInWithGoogle } from "../config/supabaseClient";
 
 const Login = () => {
   const [email, setEmail] = useState("");
+  const [error, setError] = useState("")
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   async function logIn(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
     try {
-      await signInWithPassword(email, password);
-      console.log("logging in");
+      const err=await signInWithPassword(email, password);
+      if(err) setError(err)
+      else navigate("/");
     } catch (error) {
       console.log(error);
-    } finally {
-      navigate("/");
-    }
+    } 
+    // finally {
+    //   navigate("/");
+    // }
   }
   async function googleSignIn(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
     try {
-      console.log("logging in");
       await signInWithGoogle();
     } catch (error) {
       console.log(error);
     } 
-    finally {
-      console.log("final block executed")
-    }
   }
-  // if (isPending) return <Loader />;
-  // else
+
   return (
     <div className="flex justify-center items-center mt-[40px]">
       <form
@@ -45,6 +43,7 @@ const Login = () => {
           PetFinder
         </h1>
         <p className="text-center mb-2 text-neutral-600">Login with email</p>
+        {error.length>0?<p className="text-red-500">{error}</p>:""}
         <input
           type="text"
           size={1}
@@ -60,6 +59,7 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="mb-5 rounded-lg p-2 bg-transparent border border-amber-500 outline-none"
+          required
         />
         <button
           className="mb-2 bg-amber-500 p-2 rounded-full"

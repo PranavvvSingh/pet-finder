@@ -7,17 +7,18 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  const [error, setError] = useState("")
   const navigate = useNavigate();
 
   async function signUp(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
     try {
-      await signUpNewUser(email, password, username);
-      console.log("logging in");
+      const err=await signUpNewUser(email, password, username);
+      if(err) setError(err)
+      else navigate("/");
+      // console.log("logging in");
     } catch (error) {
       console.log(error);
-    } finally {
-      navigate("/");
     }
   }
   return (
@@ -31,6 +32,7 @@ const Signup = () => {
           PetFinder
         </h1>
         <p className="text-center mb-2 text-neutral-600">Sign up with email</p>
+        {error.length > 0 ? <p className="text-red-500 mb-1">{error}</p> : ""}
         <input
           type="text"
           size={1}

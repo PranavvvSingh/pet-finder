@@ -14,7 +14,9 @@ export async function signUpNewUser(
   password: string,
   username: string
 ) {
-  await supabase.auth.signUp({
+  if (email.length <= 0 || password.length <= 0 || username.length <= 0)
+    return "Enter required details";
+  const { error } = await supabase.auth.signUp({
     email: email,
     password: password,
     options: {
@@ -23,13 +25,19 @@ export async function signUpNewUser(
       },
     },
   });
+  if (error?.message) return error.message;
+  else null;
 }
 
 export async function signInWithPassword(email: string, password: string) {
-  await supabase.auth.signInWithPassword({
+  if (email.length <= 0 || password.length <= 0)
+    return "Enter required details";
+  const { error } = await supabase.auth.signInWithPassword({
     email: email,
     password: password,
   });
+  if (error?.message) return error.message;
+  else null;
 }
 
 export async function signInWithGoogle() {
@@ -64,7 +72,7 @@ export const removeFromStore = async (id: number, email: string) => {
     await supabase
       .from("favorites")
       .delete()
-      .match({ email: email, pet_id: id })
+      .match({ email: email, pet_id: id });
   } catch (error) {
     console.log("error deleting");
   }
