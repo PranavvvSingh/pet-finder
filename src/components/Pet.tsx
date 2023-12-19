@@ -86,7 +86,7 @@ const Pet = () => {
               {favoriteStatus ? "Remove from Favorites" : "Add To Favorites"}
             </button>
             <button className="bg-amber-400 rounded-xl p-1 md:p-3">
-              Inquire
+              Enquire
             </button>
           </div>
         </div>
