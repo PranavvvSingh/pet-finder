@@ -16,7 +16,6 @@ const Signup = () => {
       const err=await signUpNewUser(email, password, username);
       if(err) setError(err)
       else navigate("/");
-      // console.log("logging in");
     } catch (error) {
       console.log(error);
     }

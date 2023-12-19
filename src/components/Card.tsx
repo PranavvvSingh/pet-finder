@@ -8,6 +8,7 @@ import { RootState } from "../app/store";
 import { partialPetsType } from "../types/types";
 import { addToStore, removeFromStore } from "../config/supabaseClient";
 import { useToast } from "@/components/ui/use-toast";
+import { motion } from "framer-motion";
 
 const Card = ({ image, name, price, id }: partialPetsType) => {
   const favorites = useSelector(
@@ -45,7 +46,12 @@ const Card = ({ image, name, price, id }: partialPetsType) => {
     }
   }
   return (
-    <div className="overflow-hidden rounded-lg bg-white shadow-1 duration-300 border border-amber-400 hover:ring-2 hover:ring-yellow-400 cursor-pointer">
+    <motion.div
+      className="overflow-hidden rounded-lg bg-[#FAF9F6] shadow-1 duration-300 border border-amber-400 hover:ring-2 hover:ring-yellow-400 cursor-pointer"
+      initial={{ opacity: 0.5 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+    >
       <img
         src={image}
         alt=""
@@ -69,10 +75,10 @@ const Card = ({ image, name, price, id }: partialPetsType) => {
             <p>{price}</p>
           </div>
           {favoriteStatus ? (
-            <Favorite
-              className="text-2xl text-amber-400"
-              onClick={ToggleFavorite}
-            />
+              <Favorite
+                className="text-2xl text-amber-400"
+                onClick={ToggleFavorite}
+              />
           ) : (
             <FavoriteBorder
               className="text-2xl hover:text-amber-400"
@@ -81,7 +87,7 @@ const Card = ({ image, name, price, id }: partialPetsType) => {
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
