@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MdOutlinePets as Logo } from "react-icons/md";
+import { FaPaw as Logo } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { signUpNewUser } from "../config/supabaseClient";
 

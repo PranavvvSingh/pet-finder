@@ -1,4 +1,5 @@
-import { MdOutlinePets as Logo } from "react-icons/md";
+// import { MdOutlinePets as Logo } from "react-icons/md";
+import { FaPaw as Logo} from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { set } from "../features/favorites";
@@ -41,7 +42,7 @@ const Header = () => {
         to="/"
         className="text-xl md:text-2xl flex gap-1 items-center heading"
       >
-        <Logo />
+        <Logo className="" />
         PetFinder
       </NavLink>
       <div className="flex gap-1 md:gap-3 items-center">

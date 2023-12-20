@@ -18,7 +18,7 @@ export function Toaster() {
           <Toast
             key={id}
             {...props}
-            className="ring-2 rounded-xl ring-inset ring-amber-400 p-5"
+            className="ring-2 rounded-xl ring-inset ring-amber-400 p-5 bg-amber-50"
           >
             <div className="grid">
               {title && (

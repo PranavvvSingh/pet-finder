@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { MdOutlinePets as Logo } from "react-icons/md";
-import { FaGoogle } from "react-icons/fa";
+import { FaPaw as Logo } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
 import { signInWithPassword, signInWithGoogle } from "../config/supabaseClient";
 
@@ -73,10 +72,10 @@ const Login = () => {
           <div className="flex flex-1 bg-neutral-300 h-[2px]" />
         </div>
         <button
-          className="bg-amber-500 p-2 rounded-full flex items-center justify-center gap-2"
+          className="border-2 border-amber-500 bg-amber-100 p-2 rounded-full flex items-center justify-center gap-2"
           onClick={(e) => googleSignIn(e)}
         >
-          <FaGoogle />
+          <img src="/google-logo.png" alt="google-logo" className="h-[25px] p-[2px] bg-white rounded-full" /> 
           Sign In With Google
         </button>
         <div className="mt-5 text-sm flex justify-center items-center gap-1 text-neutral-500">

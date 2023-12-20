@@ -71,7 +71,7 @@ const Filters = () => {
   // }
   return (
     <>
-      <div className="flex flex-row flex-wrap items-center justify-center gap-5 md:gap-8 mb-5">
+      <div className="flex flex-row flex-wrap items-center justify-center gap-5 md:gap-8">
         <div className="flex flex-wrap items-center">
           <label className="mr-1">Type:</label>
           <Select
@@ -114,7 +114,7 @@ const Filters = () => {
             value={selectedSort}
             onValueChange={(val) => dispatch(setSelectedSort(val))}
           >
-            <SelectTrigger className="w-[150px] focus:ring-amber-500">
+            <SelectTrigger className="w-[180px] focus:ring-amber-500">
               <SelectValue />
             </SelectTrigger>
             <SelectContent className="focus-within:ring-1 ring-yellow-400 ring-inset">
@@ -127,54 +127,6 @@ const Filters = () => {
           </Select>
         </div>
 
-        {/* <div className="flex flex-wrap items-center">
-          <label className="mr-1">Type:</label>
-          <div className="border p-1 rounded-lg focus-within:ring ring-yellow-400">
-            <select
-              value={selectedType}
-              onChange={(e) => dispatch(setSelectedType(e.target.value))}
-              className="rounded-lg p-1 outline-none text-center"
-            >
-              {typeRanges.map((type) => (
-                <option key={type} value={type}>
-                  {type}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div> */}
-        {/* <div className="flex items-center">
-          <label className="mr-1">Price:</label>
-          <div className="border p-1 rounded-lg focus-within:ring ring-yellow-400">
-            <select
-              value={selectedPrice}
-              onChange={(e) => dispatch(setSelectedPrice(e.target.value))}
-              className="rounded-lg p-1 outline-none text-center"
-            >
-              {priceRanges.map((range) => (
-                <option key={range} value={range}>
-                  {range}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-        <div className="flex items-center">
-          <label className="mr-1">Sort:</label>
-          <div className="border p-1 rounded-lg focus-within:ring ring-yellow-400">
-            <select
-              value={selectedSort}
-              onChange={(e) => dispatch(setSelectedSort(e.target.value))}
-              className="rounded-lg p-1 outline-none text-center"
-            >
-              {sortRanges.map((range) => (
-                <option key={range} value={range}>
-                  {range}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div> */}
         <button
           className="text-neutral-400 rounded-full hover:shadow-lg p-2 text-center border"
           onClick={handleClearFilters}
@@ -182,9 +134,9 @@ const Filters = () => {
           Clear Filters
         </button>
       </div>
-      <p className="text-center text-neutral-500">
+      {/* <p className="text-center text-neutral-500">
         Showing {pets.length} Results
-      </p>
+      </p> */}
     </>
   );
 };
