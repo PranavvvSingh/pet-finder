@@ -55,7 +55,7 @@ const Card = ({ image, name, price, id }: partialPetsType) => {
       <img
         src={image}
         alt=""
-        className="w-[280px] aspect-[16/10] object-cover"
+        className="w-[280px] z-10 aspect-[16/10] object-cover"
         onClick={() => {
           navigate("/pet/" + id);
         }}
