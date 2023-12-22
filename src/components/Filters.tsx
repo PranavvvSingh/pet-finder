@@ -37,14 +37,14 @@ const Filters = () => {
 
   return (
     <>
-      <div className="flex flex-row flex-wrap items-center justify-center gap-5 md:gap-8">
-        <div className="flex flex-wrap items-center">
+      <div className="grid grid-cols-2 px-3  sm:flex flex-row flex-wrap items-center justify-center  gap-3 sm:gap-8">
+        <div className="flex items-center">
           <label className="mr-1">Type:</label>
           <Select
             value={selectedType}
             onValueChange={(val) => dispatch(setSelectedType(val))}
           >
-            <SelectTrigger className="w-[150px] focus:ring-amber-500">
+            <SelectTrigger className=" md:w-[150px] focus:ring-amber-500">
               <SelectValue />
             </SelectTrigger>
             <SelectContent className="focus-within:ring-1 ring-yellow-400 ring-inset">
@@ -56,13 +56,13 @@ const Filters = () => {
             </SelectContent>
           </Select>
         </div>
-        <div className="flex flex-wrap items-center">
+        <div className="flex  items-center">
           <label className="mr-1">Price:</label>
           <Select
             value={selectedPrice}
             onValueChange={(val) => dispatch(setSelectedPrice(val))}
           >
-            <SelectTrigger className="w-[150px] focus:ring-amber-500">
+            <SelectTrigger className="md:w-[150px] focus:ring-amber-500">
               <SelectValue />
             </SelectTrigger>
             <SelectContent className="focus-within:ring-1 ring-yellow-400 ring-inset">
@@ -74,13 +74,13 @@ const Filters = () => {
             </SelectContent>
           </Select>
         </div>
-        <div className="flex flex-wrap items-center">
+        <div className="flex items-center">
           <label className="mr-1">Sort:</label>
           <Select
             value={selectedSort}
             onValueChange={(val) => dispatch(setSelectedSort(val))}
           >
-            <SelectTrigger className="w-[180px] focus:ring-amber-500">
+            <SelectTrigger className="md:w-[180px] focus:ring-amber-500">
               <SelectValue />
             </SelectTrigger>
             <SelectContent className="focus-within:ring-1 ring-yellow-400 ring-inset">
