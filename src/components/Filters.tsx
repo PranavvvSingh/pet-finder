@@ -17,7 +17,7 @@ import {
 const Filters = () => {
   const dispatch = useDispatch();
 
-  const { pets, selectedType, selectedPrice, selectedSort } = useSelector(
+  const { selectedType, selectedPrice, selectedSort } = useSelector(
     (state: RootState) => state.filter
   );
   const typeRanges = ["All", "Dog", "Rabbit", "Cat", "Bird", "Fish"];
@@ -34,41 +34,7 @@ const Filters = () => {
     dispatch(setSelectedSort("Recommended"));
     dispatch(setSearchText(""));
   }
-  // function handleChange(val: string) {
-  //   dispatch(setSelectedType(val));
-  // }
-  // type propTypes = {
-  //   label: string;
-  //   value: string | undefined;
-  //   handleChange: (arg0: string) => void;
-  //   placeholder: string;
-  //   range: string[];
-  // };
-  // function SelectComponent({
-  //   label,
-  //   value,
-  //   handleChange,
-  //   placeholder,
-  //   range,
-  // }: propTypes): JSX.Element {
-  //   return (
-  //     <div className="flex flex-wrap items-center">
-  //       <label className="mr-1">{label}</label>
-  //       <Select value={value} onValueChange={(val) => handleChange(val)}>
-  //         <SelectTrigger className="w-[150px] focus:ring-amber-500">
-  //           <SelectValue placeholder={placeholder} />
-  //         </SelectTrigger>
-  //         <SelectContent className="focus-within:ring-1 ring-yellow-400 ring-inset">
-  //           {range.map((type) => (
-  //             <SelectItem key={type} value={type}>
-  //               {type}
-  //             </SelectItem>
-  //           ))}
-  //         </SelectContent>
-  //       </Select>
-  //     </div>
-  //   );
-  // }
+
   return (
     <>
       <div className="flex flex-row flex-wrap items-center justify-center gap-5 md:gap-8">
